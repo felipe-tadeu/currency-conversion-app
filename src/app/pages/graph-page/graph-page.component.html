@@ -1,1 +1,97 @@
-<p>graph-page works!</p>
+<div style="display: flex; justify-content: space-between">
+  <!-- Conversion -->
+  <div style="width: 60%; padding: 2.5%">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Conversion</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form
+          class="example-form"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+          (formdata)="(form)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Input</mat-label>
+            <mat-select>
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <span>To</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Output</mat-label>
+            <mat-select>
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" formControlName="amount">
+            <mat-label>Amount</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <button mat-fab color="primary" type="button" (click)="submitForm()" style="align-self: normal;">
+            <mat-icon>currency_exchange</mat-icon>
+          </button>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-progress-bar mode="indeterminate" *ngIf="loadingConversion"></mat-progress-bar>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!-- Curencies -->
+  <div style="width: 15%; padding: 2.5% 0 2.5% 0">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Currencies</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let currency of currencies">
+            <mat-icon matListItemIcon>monetization_on</mat-icon>
+            <div matListItemTitle>{{ currency }}</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-progress-bar
+          *ngIf="loadingCurrencies"
+          mode="indeterminate"
+        ></mat-progress-bar>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <!-- Exchange rate pairs -->
+  <div style="width: 25%; padding: 2.5%">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Exchange Rate Pairs</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let exchangeRatePair of exchangeRatePairs">
+            <mat-icon matListItemIcon>currency_exchange</mat-icon>
+            <div matListItemTitle>
+              {{ exchangeRatePair.inputCurrency }}
+              ->
+              {{ exchangeRatePair.outputCurrency }}
+              :
+              {{ exchangeRatePair.exchangeRate }}
+            </div>
+          </mat-list-item>
+        </mat-list>
+        <mat-card-footer>
+          <mat-progress-bar
+            *ngIf="loadingExchangeRatePairs"
+            mode="indeterminate"
+          ></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
