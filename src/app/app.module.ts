@@ -7,22 +7,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 import { GraphPageComponent } from './pages/graph-page/graph-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CurrencyConversionInterceptor } from './interceptors/currency-conversion.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    GraphPageComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, GraphPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CurrencyConversionInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

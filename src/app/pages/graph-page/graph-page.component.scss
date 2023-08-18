@@ -1,0 +1,42 @@
+.main-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.border-card {
+  padding: 2%;
+}
+
+.conversion-card {
+  width: 60%;
+}
+
+.conversion-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2% 0 2% 0;
+}
+
+.conversion-card-data-div {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4%;
+}
+
+.currencies-card {
+  width: 15%;
+  padding: 2% 0 2% 0;
+}
+
+.exchange-rate-pairs-card {
+  width: 25%;
+}
+
+.exchange-button {
+  align-self: normal;
+}
+
+.font-size-large {
+  font-size: large;
+}
