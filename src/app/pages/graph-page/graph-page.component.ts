@@ -114,10 +114,10 @@ export class GraphPageComponent implements OnInit {
   }
 
   public numbersOnly(event: KeyboardEvent) {
-    var input =
-      this._form.get('amount')?.value +
-      (event.key === '.' ? event.key + '0' : event.key);
-    if (!VALID_NUMBER_PATTERN.test(input)) {
+    let key = event.key;
+    let input =
+      this._form.get('amount')?.value + (key === '.' ? key + '0' : key);
+    if (key === ' ' || !VALID_NUMBER_PATTERN.test(input)) {
       event.preventDefault();
     }
   }
